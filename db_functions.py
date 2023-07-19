@@ -75,13 +75,13 @@ def truncate_table():
 
 
 def insert_data_to_db():
-    date_to_insert = DT.datetime(datetime.now().year, 1, 1, 1, 59)
+    date_to_insert = DT.datetime(datetime.now(DT.timezone.utc).year, 1, 1, 0, 59)
     for price in binance_client.get_historical_klines("BTCUSDT", Client.KLINE_INTERVAL_1HOUR, f"1 Jan, {str(datetime.now().year)}",
                                                       f"1 hour ago UTC"):
         sql_query = 'insert into btc_prices_history_hour_interval (datetime_of_price, open_price, max_price, min_price, close_price) values (%s, %s, %s, %s, %s);'
         cursor = db.cursor()
         with cursor:
-            if date_to_insert == DT.datetime(datetime.now().year, 3, 24, 13, 59) or date_to_insert == DT.datetime(datetime.now().year, 3, 26, 1, 59):
+            if date_to_insert == DT.datetime(2023, 3, 24, 12, 59):
                 cursor.execute(sql_query, (date_to_insert, price[1], price[2], price[3], price[4]))
                 db.commit()
                 date_to_insert += step_to_iterate
@@ -93,7 +93,7 @@ def insert_data_to_db():
     return date_to_insert
 
 def get_last_date():
-    last_date = datetime(2023, 1, 1, 1, 59)
+    last_date = datetime(2023, 1, 1, 0, 59)
     cursor = db.cursor(buffered=True)
     with cursor:
         cursor.execute('select datetime_of_price from btc_price_saver.btc_prices_history_hour_interval order by datetime_of_price desc limit 1;')
@@ -111,6 +111,10 @@ def insert_one_row():
             cursor.execute(sql_query, (last_date, price[1], price[2], price[3], price[4]))
             db.commit()
 
+def compare_last_date():
+    utc_dt = datetime.now(DT.timezone.utc)
+    if get_last_date() != datetime(utc_dt.year, utc_dt.month, utc_dt.day, utc_dt.hour, 59) - DT.timedelta(minutes=60):
+        insert_one_row()
 
 def prices_monitoring():
     while True:
