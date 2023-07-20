@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="00ed917e-bd96-4104-970d-3aad4a00d548" name="Changes" comment="Little refactored code" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2SQY9hnnGA47rqGZG8H9Ex5iIDS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/andre/OneDrive/Desktop/btc-price-logger"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="00ed917e-bd96-4104-970d-3aad4a00d548" name="Changes" comment="" />
+      <created>1689080121576</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689080121576</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added a basic code, including libraries">
+      <created>1689086488942</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689086488943</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added a keys for AWS S3. Realizaed function for uploading file to bucket">
+      <created>1689097876538</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1689097876538</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Replaced an S3Bucket with database. Added a database configuration for test.">
+      <created>1689521539295</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689521539295</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added configuration to connect to DB. Refactored the code. Made function to fill historical BTC-candles to DB (without date and time)">
+      <created>1689592451499</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1689592451500</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added a Dockerfile. Fixed a functions">
+      <created>1689691121326</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1689691121326</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Configurate functions by UTC-timestamp">
+      <created>1689808226572</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1689808226572</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Little refactored code">
+      <created>1689842714892</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1689842714892</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added a basic code, including libraries" />
+    <MESSAGE value="Added a keys for AWS S3. Realizaed function for uploading file to bucket" />
+    <MESSAGE value="Replaced an S3Bucket with database. Added a database configuration for test." />
+    <MESSAGE value="Added configuration to connect to DB. Refactored the code. Made function to fill historical BTC-candles to DB (without date and time)" />
+    <MESSAGE value="Added a Dockerfile. Fixed a functions" />
+    <MESSAGE value="Configurate functions by UTC-timestamp" />
+    <MESSAGE value="Little refactored code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Little refactored code" />
+  </component>
+</project>
