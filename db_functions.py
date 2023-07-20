@@ -93,7 +93,6 @@ def insert_data_to_db():
     return date_to_insert
 
 def get_last_date():
-    last_date = datetime(2023, 1, 1, 0, 59)
     cursor = db.cursor(buffered=True)
     with cursor:
         cursor.execute('select datetime_of_price from btc_price_saver.btc_prices_history_hour_interval order by datetime_of_price desc limit 1;')
@@ -118,7 +117,14 @@ def compare_last_date():
 
 def prices_monitoring():
     while True:
-        if datetime.now().minute == 1 and datetime.now().second == 1:
+        if DT.datetime(datetime.now(DT.timezone.utc).year, datetime.now(DT.timezone.utc).month,
+                       datetime.now(DT.timezone.utc).day, datetime.now(DT.timezone.utc).hour,
+                       datetime.now(DT.timezone.utc).minute) == DT.datetime(datetime.now(DT.timezone.utc).year, 1, 1, 1, 1):
+            usedb()
+            truncate_table()
+            usedb()
+            insert_data_to_db()
+        elif datetime.now().minute == 1 and datetime.now().second == 1:
             insert_one_row()
             time.sleep(1000)
 
