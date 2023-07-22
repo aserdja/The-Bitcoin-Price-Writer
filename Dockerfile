@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install python-binance
-RUN pip install mysql-connector-python
-
+RUN pip install -r requirements.txt
 
 CMD [ "python", "btc-price-logger.py" ]
