@@ -1,3 +1,4 @@
-boto3==1.28.8
+boto3~=1.28.8
 mysql_connector_repackaged==0.3.1
 python_binance==1.0.17
+mysql-connector-python~=8.1.0

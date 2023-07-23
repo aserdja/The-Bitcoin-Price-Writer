@@ -1,37 +1,8 @@
 import datetime as DT
 import time
-
 from binance_api_keys import Client, binance_client
 from datetime import datetime
 from db_settings import db
-
-
-def get_a_month_name():
-    match datetime.now().month:
-        case 1:
-            return 'Jan'
-        case 2:
-            return 'Feb'
-        case 3:
-            return 'Mar'
-        case 4:
-            return 'Apr'
-        case 5:
-            return 'May'
-        case 6:
-            return 'Jun'
-        case 7:
-            return 'Jul'
-        case 8:
-            return 'Aug'
-        case 9:
-            return 'Sep'
-        case 10:
-            return 'Oct'
-        case 11:
-            return 'Nov'
-        case 12:
-            return 'Dec'
 
 
 def create_db_and_table():
@@ -92,6 +63,7 @@ def insert_data_to_db():
                 date_to_insert += step_to_iterate
     return date_to_insert
 
+
 def get_last_date():
     cursor = db.cursor(buffered=True)
     with cursor:
@@ -110,10 +82,12 @@ def insert_one_row():
             cursor.execute(sql_query, (last_date, price[1], price[2], price[3], price[4]))
             db.commit()
 
+
 def compare_last_date():
     utc_dt = datetime.now(DT.timezone.utc)
     if get_last_date() != datetime(utc_dt.year, utc_dt.month, utc_dt.day, utc_dt.hour, 59) - DT.timedelta(minutes=60):
         insert_one_row()
+
 
 def prices_monitoring():
     while True:
@@ -127,5 +101,6 @@ def prices_monitoring():
         elif datetime.now().minute == 1 and datetime.now().second == 1:
             insert_one_row()
             time.sleep(1000)
+
 
 step_to_iterate = DT.timedelta(minutes=60)

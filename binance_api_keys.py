@@ -1,5 +1,7 @@
-api_key = ''
-secret_api_key = ''
-
 from binance.client import Client
-binance_client = Client(api_key, secret_api_key)
+import os
+
+BINANCE_API_KEY = os.environ.get("BINANCE_API_KEY")
+BINANCE_SECRET_API_KEY = os.environ.get("BINANCE_SECRET_API_KEY")
+
+binance_client = Client(BINANCE_API_KEY, BINANCE_SECRET_API_KEY)
