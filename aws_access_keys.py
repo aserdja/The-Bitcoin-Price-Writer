@@ -1,7 +1,6 @@
 import boto3
-import os
+import json
 
-AWS_ACCESS_KEY = os.environ.get("AWS_ACCESS_KEY")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-
-#aws_client = boto3.client('s3', aws_access_key_id = AWS_ACCESS_KEY, aws_secret_access_key = sAWS_SECRET_ACCESS_KEY)
+aws_client = boto3.client('secretsmanager', region_name='eu-central-1')
+responce = aws_client.get_secret_value(SecretId='/btc-price-logger/db')
+secret_dictionary = json.loads(responce['SecretString'])
