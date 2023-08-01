@@ -1,9 +1,8 @@
 import datetime as DT
 import time
-from db_inserting_functions import insert_one_row, insert_data_to_db
+import db_inserting_functions as dbif
 from datetime import datetime
 from db_settings import db, DB_NAME, TABLE_NAME
-from db_inserting_functions import DATETIME_ITERATE_STEP
 
 
 def create_database():
@@ -19,6 +18,7 @@ def use_db():
 
 
 def create_table_in_db():
+    use_db()
     cursor = db.cursor()
     sql_query = f'''
                     create table if not exists {TABLE_NAME} (
@@ -48,9 +48,12 @@ def get_last_date():
 
 
 def compare_last_date():
-    utc_dt = datetime.now(DT.timezone.utc)
-    if get_last_date() != datetime(utc_dt.year, utc_dt.month, utc_dt.day, utc_dt.hour, 59) - DATETIME_ITERATE_STEP:
-        insert_one_row()
+    try:
+        utc_dt = datetime.now(DT.timezone.utc)
+        if get_last_date() != datetime(utc_dt.year, utc_dt.month, utc_dt.day, utc_dt.hour, 59) - dbif.DATETIME_ITERATE_STEP:
+            dbif.insert_one_row()
+    except:
+        dbif.insert_one_row()
 
 
 def prices_monitoring():
@@ -59,7 +62,8 @@ def prices_monitoring():
                        datetime.now(DT.timezone.utc).day, datetime.now(DT.timezone.utc).hour,
                        datetime.now(DT.timezone.utc).minute) == DT.datetime(datetime.now(DT.timezone.utc).year, 1, 1, 1, 1):
             truncate_table()
-            insert_data_to_db()
+            dbif.insert_one_row()
+            time.sleep(1000)
         elif datetime.now().minute == 1 and datetime.now().second == 1:
-            insert_one_row()
+            dbif.insert_one_row()
             time.sleep(1000)

@@ -1,6 +1,6 @@
 import datetime as DT
 from binance_api_keys import Client, binance_client, CHART
-from db_settings import db, TABLE_NAME, START_DATE_STRING, END_DATE_STRING, START_DATE_DATETIME
+from db_settings import db, TABLE_NAME, START_DATE_STRING, END_DATE_STRING, START_DATE_DATETIME, END_DATE_DATETIME
 import db_functions
 
 
@@ -23,12 +23,14 @@ def insert_data_to_db():
                 cursor.execute(SQL_QUERY_FOR_INSERT, (date_to_insert, price[1], price[2], price[3], price[4]))
                 db.commit()
                 date_to_insert += DATETIME_ITERATE_STEP
-    return date_to_insert
 
 
 def insert_one_row():
-    last_date = db_functions.get_last_date()
-    last_date += DATETIME_ITERATE_STEP
+    try:
+        last_date = db_functions.get_last_date()
+        last_date += DATETIME_ITERATE_STEP
+    except:
+        last_date = END_DATE_DATETIME
     for price in binance_client.get_historical_klines(CHART, Client.KLINE_INTERVAL_1HOUR, "2 hour ago UTC", '1 hour ago UTC'):
         cursor = db.cursor()
         with cursor:

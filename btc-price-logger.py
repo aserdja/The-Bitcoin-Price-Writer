@@ -1,9 +1,8 @@
-from db_functions import create_database, create_table_in_db, use_db, truncate_table, compare_last_date, prices_monitoring
+from db_functions import create_database, create_table_in_db, truncate_table, compare_last_date, prices_monitoring
 from db_inserting_functions import insert_data_to_db
 
 
 create_database()
-use_db()
 create_table_in_db()
 truncate_table()
 insert_data_to_db()
