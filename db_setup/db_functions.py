@@ -1,8 +1,8 @@
 import datetime as DT
 import time
-import db_inserting_functions as dbif
 from datetime import datetime
-from db_settings import db, DB_NAME, TABLE_NAME
+from db_setup.db_settings import db, DB_NAME, TABLE_NAME
+import db_setup.db_inserting_functions as dbif
 
 
 def create_database():

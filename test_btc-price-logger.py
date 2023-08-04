@@ -1,8 +1,8 @@
-import time
 import unittest
-from db_inserting_functions import insert_one_row
-from db_functions import create_database, create_table_in_db, truncate_table
-from test_functions import *
+from db_setup.db_inserting_functions import insert_one_row
+from db_setup.db_functions import create_database, create_table_in_db, truncate_table
+from db_setup.db_settings import db
+from tests.test_functions import *
 
 
 class TestPriceLogger(unittest.TestCase):

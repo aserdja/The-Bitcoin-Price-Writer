@@ -1,5 +1,5 @@
-from db_settings import db, DB_NAME, TABLE_NAME
-from db_functions import use_db
+from db_setup.db_settings import db, DB_NAME, TABLE_NAME
+from db_setup.db_functions import use_db
 
 def check_existence_of_db():
     cursor = db.cursor()

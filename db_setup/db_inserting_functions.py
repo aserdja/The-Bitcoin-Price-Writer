@@ -1,8 +1,7 @@
 import datetime as DT
-from binance_api_keys import Client, binance_client, CHART
-from db_settings import db, TABLE_NAME, START_DATE_STRING, END_DATE_STRING, START_DATE_DATETIME, END_DATE_DATETIME
-import db_functions
-
+from api_keys.binance_api_keys import binance_client, Client, CHART
+from db_setup.db_settings import db, TABLE_NAME, START_DATE_STRING, END_DATE_STRING, START_DATE_DATETIME, END_DATE_DATETIME
+import db_setup.db_functions as dbf
 
 #CONSTANTS
 SQL_QUERY_FOR_INSERT = f'insert into {TABLE_NAME} (datetime_of_price, open_price, max_price, min_price, close_price) values (%s, %s, %s, %s, %s);'
@@ -27,7 +26,7 @@ def insert_data_to_db():
 
 def insert_one_row():
     try:
-        last_date = db_functions.get_last_date()
+        last_date = dbf.get_last_date()
         last_date += DATETIME_ITERATE_STEP
     except:
         last_date = END_DATE_DATETIME

@@ -1,7 +1,7 @@
 from datetime import datetime
 import datetime as DT
 import mysql.connector
-from aws_access_keys import secret_dictionary
+from api_keys.aws_access_keys import secret_dictionary
 
 
 # CONSTANTS
