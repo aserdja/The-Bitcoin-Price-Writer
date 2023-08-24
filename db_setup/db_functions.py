@@ -48,12 +48,16 @@ def get_last_date():
 
 
 def compare_last_date():
-    try:
-        utc_dt = datetime.now(DT.timezone.utc)
-        if get_last_date() != datetime(utc_dt.year, utc_dt.month, utc_dt.day, utc_dt.hour, 59) - dbif.DATETIME_ITERATE_STEP:
+    utc_dt = datetime.now(DT.timezone.utc)
+    date_hour_ago = datetime(utc_dt.year, utc_dt.month, utc_dt.day, utc_dt.hour, 59) - dbif.DATETIME_ITERATE_STEP
+
+    if get_last_date() != date_hour_ago:
+        if get_last_date().year != date_hour_ago.year:
+            truncate_table()
             dbif.insert_one_row()
-    except:
-        dbif.insert_one_row()
+            prices_monitoring()
+        else:
+            dbif.insert_one_row()
 
 
 def prices_monitoring():
@@ -64,6 +68,14 @@ def prices_monitoring():
             truncate_table()
             dbif.insert_one_row()
             time.sleep(1000)
-        elif datetime.now().minute == 1 and datetime.now().second == 1:
+        elif datetime.now().minute == 1:
             dbif.insert_one_row()
             time.sleep(1000)
+
+
+def check_current_date():
+    if DT.datetime(datetime.now(DT.timezone.utc).year, datetime.now(DT.timezone.utc).month, datetime.now(DT.timezone.utc).day,
+                   datetime.now(DT.timezone.utc).hour, datetime.now(DT.timezone.utc).minute) < DT.datetime(datetime.now(DT.timezone.utc).year, 1, 1, 1, 1):
+        prices_monitoring()
+    else:
+        dbif.insert_data_to_db()
